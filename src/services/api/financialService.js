@@ -103,13 +103,12 @@ class FinancialService {
     }
   }
 
-  async create(financialData) {
+async create(financialData) {
     try {
       const client = this.getApperClient();
       
-      // Map UI fields to database fields (only Updateable fields)
+      // Map UI fields to database fields (only Updateable fields - exclude Name)
       const dbData = {
-        Name: financialData.description || 'New Financial Record',
         type_c: financialData.type || 'expense',
         category_c: financialData.category || '',
         amount_c: parseFloat(financialData.amount) || 0,
@@ -117,7 +116,6 @@ class FinancialService {
         date_c: financialData.date || null,
         crop_id_c: financialData.cropId ? parseInt(financialData.cropId) : null
       };
-      
       const params = {
         records: [dbData]
       };
@@ -160,14 +158,13 @@ class FinancialService {
     }
   }
 
-  async update(id, financialData) {
+async update(id, financialData) {
     try {
       const client = this.getApperClient();
       
-      // Map UI fields to database fields (only Updateable fields)
+      // Map UI fields to database fields (only Updateable fields - exclude Name)
       const dbData = {
         Id: parseInt(id),
-        Name: financialData.description || 'Updated Financial Record',
         type_c: financialData.type || 'expense',
         category_c: financialData.category || '',
         amount_c: parseFloat(financialData.amount) || 0,

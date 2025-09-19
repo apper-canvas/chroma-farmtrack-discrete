@@ -171,9 +171,9 @@ const Finances = () => {
           </p>
         </div>
         <div className="flex items-center space-x-3">
-          <Button
+<Button
             onClick={() => {
-              setEditingFinancial({ type: "expense" });
+              setEditingFinancial(null);
               setShowForm(true);
             }}
             icon="TrendingDown"
@@ -183,7 +183,7 @@ const Finances = () => {
           </Button>
           <Button
             onClick={() => {
-              setEditingFinancial({ type: "income" });
+              setEditingFinancial(null);
               setShowForm(true);
             }}
             icon="TrendingUp"

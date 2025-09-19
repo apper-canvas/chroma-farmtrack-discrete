@@ -23,14 +23,14 @@ const FinancialForm = ({ financial, onSave, onCancel }) => {
 
   useEffect(() => {
     loadCrops();
-    if (financial) {
+if (financial) {
       setFormData({
         type: financial.type || "expense",
         category: financial.category || "",
         amount: financial.amount || "",
         description: financial.description || "",
-        date: financial.date ? financial.date.split("T")[0] : "",
-        cropId: financial.cropId || ""
+        date: financial.date ? (financial.date.includes("T") ? financial.date.split("T")[0] : financial.date) : "",
+        cropId: financial.cropId ? String(financial.cropId) : ""
       });
     }
   }, [financial]);
@@ -49,9 +49,10 @@ const FinancialForm = ({ financial, onSave, onCancel }) => {
     setLoading(true);
 
     try {
-      const financialData = {
+const financialData = {
         ...formData,
-        amount: parseFloat(formData.amount) || 0
+        amount: parseFloat(formData.amount) || 0,
+        cropId: formData.cropId ? parseInt(formData.cropId) : null
       };
 
       if (financial) {
