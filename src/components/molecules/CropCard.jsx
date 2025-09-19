@@ -58,7 +58,7 @@ const CropCard = ({ crop, onEdit, onDelete }) => {
             <ApperIcon name="MapPin" className="h-4 w-4" />
             <span>Field Location</span>
           </span>
-          <span className="font-medium text-gray-900">{crop.fieldLocation}</span>
+<span className="font-medium text-gray-900">{crop.fieldLocation}</span>
         </div>
         
         <div className="flex items-center justify-between text-sm">

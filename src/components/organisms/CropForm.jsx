@@ -22,7 +22,7 @@ const CropForm = ({ crop, onSave, onCancel }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (crop) {
+if (crop) {
       setFormData({
         name: crop.name || "",
         variety: crop.variety || "",

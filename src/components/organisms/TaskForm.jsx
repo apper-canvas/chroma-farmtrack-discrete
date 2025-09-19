@@ -25,7 +25,7 @@ const TaskForm = ({ task, onSave, onCancel }) => {
   useEffect(() => {
     loadCrops();
     if (task) {
-      setFormData({
+setFormData({
         title: task.title || "",
         description: task.description || "",
         cropId: task.cropId || "",
@@ -113,7 +113,7 @@ const TaskForm = ({ task, onSave, onCancel }) => {
             onChange={handleChange}
             placeholder="Select a crop (optional)"
           >
-            {crops.map((crop) => (
+{crops.map((crop) => (
               <option key={crop.Id} value={crop.Id}>
                 {crop.name} - {crop.fieldLocation}
               </option>

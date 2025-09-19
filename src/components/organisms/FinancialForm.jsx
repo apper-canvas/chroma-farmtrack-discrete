@@ -176,7 +176,7 @@ const FinancialForm = ({ financial, onSave, onCancel }) => {
           onChange={handleChange}
           placeholder="Select a crop (optional)"
         >
-          {crops.map((crop) => (
+{crops.map((crop) => (
             <option key={crop.Id} value={crop.Id}>
               {crop.name} - {crop.fieldLocation}
             </option>
