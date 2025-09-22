@@ -12,6 +12,7 @@ import Farm from "@/components/pages/Farm";
 import Tasks from "@/components/pages/Tasks";
 import Finances from "@/components/pages/Finances";
 import Weather from "@/components/pages/Weather";
+import Chat from "@/components/pages/Chat";
 import Login from "@/components/pages/Login";
 import Signup from "@/components/pages/Signup";
 import Callback from "@/components/pages/Callback";
@@ -152,6 +153,7 @@ function AppContent() {
           <Route path="tasks" element={<Tasks />} />
           <Route path="finances" element={<Finances />} />
           <Route path="weather" element={<Weather />} />
+          <Route path="chat" element={<Chat />} />
         </Route>
       </Routes>
       

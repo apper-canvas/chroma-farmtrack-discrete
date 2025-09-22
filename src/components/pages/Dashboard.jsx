@@ -235,7 +235,7 @@ const Dashboard = () => {
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Button
+<Button
             onClick={() => navigate("/crops")}
             variant="outline"
             className="h-20 flex-col space-y-2"
@@ -266,6 +266,14 @@ const Dashboard = () => {
             icon="Cloud"
           >
             <span>Check Weather</span>
+          </Button>
+          <Button
+            onClick={() => navigate("/chat")}
+            variant="outline"
+            className="h-20 flex-col space-y-2"
+            icon="MessageCircle"
+          >
+            <span>ChatGPT Assistant</span>
           </Button>
         </div>
       </Card>
