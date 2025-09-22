@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import Card from '@/components/atoms/Card';
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
+import Select from '@/components/atoms/Select';
 import ApperIcon from '@/components/ApperIcon';
 import { farmService } from '@/services/api/farmService';
 
@@ -147,13 +148,23 @@ if (!formData.Name.trim()) {
                 />
               </div>
               <div>
-                <Input
+<Select
                   label="Farm Type"
                   value={formData.farm_type_c}
                   onChange={(e) => handleInputChange('farm_type_c', e.target.value)}
                   error={errors.farm_type_c}
                   required
-                />
+                  placeholder="Select farm type"
+                >
+                  <option value="crop">Crop Farming</option>
+                  <option value="livestock">Livestock</option>
+                  <option value="dairy">Dairy</option>
+                  <option value="poultry">Poultry</option>
+                  <option value="mixed">Mixed Farming</option>
+                  <option value="organic">Organic</option>
+                  <option value="aquaculture">Aquaculture</option>
+                  <option value="orchard">Orchard</option>
+                </Select>
               </div>
               <div>
                 <Input
