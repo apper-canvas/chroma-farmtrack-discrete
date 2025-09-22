@@ -28,8 +28,9 @@ class TaskService {
           {"field": {"Name": "description_c"}},
           {"field": {"Name": "due_date_c"}},
           {"field": {"Name": "priority_c"}},
-          {"field": {"Name": "category_c"}},
+{"field": {"Name": "category_c"}},
           {"field": {"Name": "completed_c"}},
+          {"field": {"Name": "status_c"}},
           {"field": {"Name": "crop_id_c"}}
         ]
       };
@@ -49,7 +50,8 @@ class TaskService {
         dueDate: task.due_date_c || null,
         priority: task.priority_c || 'medium',
         category: task.category_c || 'general',
-        completed: task.completed_c || false,
+completed: task.completed_c || false,
+        status: task.status_c || 'pending',
         cropId: task.crop_id_c?.Id || task.crop_id_c || null
       }));
       
@@ -71,8 +73,9 @@ class TaskService {
           {"field": {"Name": "description_c"}},
           {"field": {"Name": "due_date_c"}},
           {"field": {"Name": "priority_c"}},
-          {"field": {"Name": "category_c"}},
+{"field": {"Name": "category_c"}},
           {"field": {"Name": "completed_c"}},
+          {"field": {"Name": "status_c"}},
           {"field": {"Name": "crop_id_c"}}
         ]
       };
@@ -92,8 +95,9 @@ class TaskService {
       const task = {
         Id: response.data.Id,
         title: response.data.title_c || response.data.Name || '',
-        description: response.data.description_c || '',
+description: response.data.description_c || '',
         dueDate: response.data.due_date_c || null,
+        status: response.data.status_c || 'pending',
         priority: response.data.priority_c || 'medium',
         category: response.data.category_c || 'general',
         completed: response.data.completed_c || false,
@@ -119,7 +123,8 @@ class TaskService {
         due_date_c: taskData.dueDate || null,
         priority_c: taskData.priority || 'medium',
         category_c: taskData.category || 'general',
-        completed_c: taskData.completed || false,
+completed_c: taskData.completed || false,
+        status_c: taskData.status || 'pending',
         crop_id_c: taskData.cropId ? parseInt(taskData.cropId) : null
       };
       
@@ -152,8 +157,9 @@ class TaskService {
             description: newTask.description_c || '',
             dueDate: newTask.due_date_c || null,
             priority: newTask.priority_c || 'medium',
-            category: newTask.category_c || 'general',
+category: newTask.category_c || 'general',
             completed: newTask.completed_c || false,
+            status: newTask.status_c || 'pending',
             cropId: newTask.crop_id_c?.Id || newTask.crop_id_c || null
           };
         }
@@ -178,8 +184,9 @@ class TaskService {
         description_c: taskData.description || '',
         due_date_c: taskData.dueDate || null,
         priority_c: taskData.priority || 'medium',
-        category_c: taskData.category || 'general',
+category_c: taskData.category || 'general',
         completed_c: taskData.completed || false,
+        status_c: taskData.status || 'pending',
         crop_id_c: taskData.cropId ? parseInt(taskData.cropId) : null
       };
       
@@ -211,8 +218,9 @@ class TaskService {
             title: updatedTask.title_c || updatedTask.Name || '',
             description: updatedTask.description_c || '',
             dueDate: updatedTask.due_date_c || null,
-            priority: updatedTask.priority_c || 'medium',
+priority: updatedTask.priority_c || 'medium',
             category: updatedTask.category_c || 'general',
+            status: updatedTask.status_c || 'pending',
             completed: updatedTask.completed_c || false,
             cropId: updatedTask.crop_id_c?.Id || updatedTask.crop_id_c || null
           };

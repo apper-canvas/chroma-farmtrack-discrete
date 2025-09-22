@@ -16,7 +16,7 @@ const [formData, setFormData] = useState({
     dueDate: "",
     priority: "medium",
     category: "general",
-    status: "pending",
+status: "pending",
     completed: false
   });
 
@@ -33,7 +33,7 @@ setFormData({
         dueDate: task.dueDate ? task.dueDate.split("T")[0] : "",
         priority: task.priority || "medium",
         category: task.category || "general",
-        status: task.completed ? "completed" : "pending",
+status: task.status || "pending",
         completed: task.completed || false
       });
     }
