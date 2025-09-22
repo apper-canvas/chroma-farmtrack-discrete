@@ -9,13 +9,14 @@ import { taskService } from "@/services/api/taskService";
 import { cropService } from "@/services/api/cropService";
 
 const TaskForm = ({ task, onSave, onCancel }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     title: "",
     description: "",
     cropId: "",
     dueDate: "",
     priority: "medium",
     category: "general",
+    status: "pending",
     completed: false
   });
 
@@ -32,6 +33,7 @@ setFormData({
         dueDate: task.dueDate ? task.dueDate.split("T")[0] : "",
         priority: task.priority || "medium",
         category: task.category || "general",
+        status: task.completed ? "completed" : "pending",
         completed: task.completed || false
       });
     }
@@ -158,6 +160,18 @@ setFormData({
             <option value="general">General</option>
           </Select>
         </div>
+
+<Select
+          label="Status"
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+          required
+        >
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </Select>
 
         {task && (
           <div className="flex items-center space-x-3">
