@@ -11,8 +11,9 @@ const Header = () => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
   const navigation = [
-    { name: "Dashboard", path: "/", icon: "LayoutDashboard" },
+{ name: "Dashboard", path: "/", icon: "LayoutDashboard" },
     { name: "Crops", path: "/crops", icon: "Sprout" },
+    { name: "Farms", path: "/farms", icon: "Home" },
     { name: "Tasks", path: "/tasks", icon: "CheckSquare" },
     { name: "Finances", path: "/finances", icon: "DollarSign" },
     { name: "Weather", path: "/weather", icon: "Cloud" }
