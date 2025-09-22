@@ -109,7 +109,7 @@ records: [{
 
       const response = await apperClient.createRecord('farm_c', payload);
 
-      if (!response.success) {
+if (!response.success) {
         console.error('Failed to create farm:', response.message);
         return null;
       }
@@ -119,7 +119,7 @@ records: [{
         const failed = response.results.filter(r => !r.success);
 
         if (failed.length > 0) {
-          console.error(`Failed to create ${failed.length} farm records:`, failed);
+          console.error(`Failed to create ${failed.length} farm records:${JSON.stringify(failed)}`);
           failed.forEach(record => {
             if (record.errors) {
               record.errors.forEach(error => {
@@ -130,6 +130,15 @@ records: [{
               console.error('Record error:', record.message);
             }
           });
+          
+          // Throw error with specific details for form handling
+          const errorMessages = failed.map(record => {
+            if (record.errors && record.errors.length > 0) {
+              return record.errors.map(error => `${error.fieldLabel}: ${error.message}`).join(', ');
+            }
+            return record.message || 'Unknown error';
+          });
+          throw new Error(errorMessages.join('; '));
         }
 
         return successful.length > 0 ? successful[0].data : null;

@@ -94,9 +94,17 @@ if (!formData.Name.trim()) {
           toast.error('Failed to create farm');
         }
       }
-    } catch (error) {
+} catch (error) {
       console.error('Error saving farm:', error?.response?.data?.message || error);
-      toast.error('Failed to save farm. Please try again.');
+      
+      // Handle specific field validation errors
+      const errorMessage = error?.response?.data?.message || error?.message || error;
+      if (typeof errorMessage === 'string' && errorMessage.includes(':')) {
+        // Field-specific error
+        toast.error(`Farm validation error: ${errorMessage}`);
+      } else {
+        toast.error('Failed to save farm. Please check all required fields and try again.');
+      }
     } finally {
       setLoading(false);
     }
