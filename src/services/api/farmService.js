@@ -12,7 +12,7 @@ export const farmService = {
 
       const params = {
         fields: [
-          {"field": {"Name": "Id"}},
+{"field": {"Name": "Id"}},
           {"field": {"Name": "Name"}},
           {"field": {"Name": "Tags"}},
           {"field": {"Name": "Owner"}},
@@ -22,7 +22,9 @@ export const farmService = {
           {"field": {"Name": "ModifiedBy"}},
           {"field": {"Name": "farm_name_c"}},
           {"field": {"Name": "location_c"}},
-          {"field": {"Name": "contact_email_c"}}
+          {"field": {"Name": "contact_email_c"}},
+          {"field": {"Name": "farm_type_c"}},
+          {"field": {"Name": "farm_size_c"}}
         ],
         orderBy: [{"fieldName": "CreatedOn", "sorttype": "DESC"}],
         pagingInfo: {"limit": 100, "offset": 0}
@@ -53,7 +55,7 @@ export const farmService = {
 
       const params = {
         fields: [
-          {"field": {"Name": "Id"}},
+{"field": {"Name": "Id"}},
           {"field": {"Name": "Name"}},
           {"field": {"Name": "Tags"}},
           {"field": {"Name": "Owner"}},
@@ -63,7 +65,9 @@ export const farmService = {
           {"field": {"Name": "ModifiedBy"}},
           {"field": {"Name": "farm_name_c"}},
           {"field": {"Name": "location_c"}},
-          {"field": {"Name": "contact_email_c"}}
+          {"field": {"Name": "contact_email_c"}},
+          {"field": {"Name": "farm_type_c"}},
+          {"field": {"Name": "farm_size_c"}}
         ]
       };
 
@@ -92,12 +96,14 @@ export const farmService = {
 
       // Only include Updateable fields
       const payload = {
-        records: [{
+records: [{
           Name: farmData.Name,
           Tags: farmData.Tags,
           farm_name_c: farmData.farm_name_c,
           location_c: farmData.location_c,
-          contact_email_c: farmData.contact_email_c
+          contact_email_c: farmData.contact_email_c,
+          farm_type_c: farmData.farm_type_c,
+          farm_size_c: farmData.farm_size_c ? parseFloat(farmData.farm_size_c) : null
         }]
       };
 
@@ -149,11 +155,13 @@ export const farmService = {
       const payload = {
         records: [{
           Id: farmId,
-          Name: farmData.Name,
+Name: farmData.Name,
           Tags: farmData.Tags,
           farm_name_c: farmData.farm_name_c,
           location_c: farmData.location_c,
-          contact_email_c: farmData.contact_email_c
+          contact_email_c: farmData.contact_email_c,
+          farm_type_c: farmData.farm_type_c,
+          farm_size_c: farmData.farm_size_c ? parseFloat(farmData.farm_size_c) : null
         }]
       };
 

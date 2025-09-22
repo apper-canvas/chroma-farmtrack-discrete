@@ -7,11 +7,13 @@ import ApperIcon from '@/components/ApperIcon';
 import { farmService } from '@/services/api/farmService';
 
 const FarmForm = ({ farm, onSave, onCancel }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     Name: '',
     farm_name_c: '',
     location_c: '',
     contact_email_c: '',
+    farm_type_c: '',
+    farm_size_c: '',
     Tags: ''
   });
   const [loading, setLoading] = useState(false);
@@ -20,10 +22,12 @@ const FarmForm = ({ farm, onSave, onCancel }) => {
   useEffect(() => {
     if (farm) {
       setFormData({
-        Name: farm.Name || '',
+Name: farm.Name || '',
         farm_name_c: farm.farm_name_c || '',
         location_c: farm.location_c || '',
         contact_email_c: farm.contact_email_c || '',
+        farm_type_c: farm.farm_type_c || '',
+        farm_size_c: farm.farm_size_c || '',
         Tags: farm.Tags || ''
       });
     }
@@ -31,8 +35,7 @@ const FarmForm = ({ farm, onSave, onCancel }) => {
 
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.Name.trim()) {
+if (!formData.Name.trim()) {
       newErrors.Name = 'Name is required';
     }
 
@@ -42,6 +45,14 @@ const FarmForm = ({ farm, onSave, onCancel }) => {
 
     if (!formData.location_c.trim()) {
       newErrors.location_c = 'Location is required';
+    }
+
+    if (!formData.farm_type_c.trim()) {
+      newErrors.farm_type_c = 'Farm type is required';
+    }
+
+    if (formData.farm_size_c && (isNaN(formData.farm_size_c) || parseFloat(formData.farm_size_c) <= 0)) {
+      newErrors.farm_size_c = 'Please enter a valid farm size';
     }
 
     if (formData.contact_email_c && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.contact_email_c)) {
@@ -116,7 +127,7 @@ const FarmForm = ({ farm, onSave, onCancel }) => {
           </div>
 
           <div className="p-6 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Input
                   label="Name"
@@ -133,6 +144,26 @@ const FarmForm = ({ farm, onSave, onCancel }) => {
                   onChange={(e) => handleInputChange('farm_name_c', e.target.value)}
                   error={errors.farm_name_c}
                   required
+                />
+              </div>
+              <div>
+                <Input
+                  label="Farm Type"
+                  value={formData.farm_type_c}
+                  onChange={(e) => handleInputChange('farm_type_c', e.target.value)}
+                  error={errors.farm_type_c}
+                  required
+                />
+              </div>
+              <div>
+                <Input
+                  label="Farm Size"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  value={formData.farm_size_c}
+                  onChange={(e) => handleInputChange('farm_size_c', e.target.value)}
+                  error={errors.farm_size_c}
                 />
               </div>
             </div>
