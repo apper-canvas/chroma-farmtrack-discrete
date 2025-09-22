@@ -1,32 +1,17 @@
-import React, { useState, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import Button from "@/components/atoms/Button";
 import ApperIcon from "@/components/ApperIcon";
 import { AuthContext } from "../../App";
-const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
+
+const Header = ({ setSidebarOpen }) => {
   const { logout } = useContext(AuthContext);
   const { user, isAuthenticated } = useSelector((state) => state.user);
-
-  const navigation = [
-{ name: "Dashboard", path: "/", icon: "LayoutDashboard" },
-    { name: "Crops", path: "/crops", icon: "Sprout" },
-    { name: "Farms", path: "/farms", icon: "Home" },
-    { name: "Tasks", path: "/tasks", icon: "CheckSquare" },
-    { name: "Finances", path: "/finances", icon: "DollarSign" },
-    { name: "Weather", path: "/weather", icon: "Cloud" }
-  ];
 
   const handleLogout = async () => {
     await logout();
   };
 
-  const isActivePath = (path) => {
-    if (path === "/") return location.pathname === "/";
-    return location.pathname.startsWith(path);
-  };
 
   return (
     <header className="bg-white shadow-lg border-b border-gray-200 relative z-50">
@@ -46,23 +31,6 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 ${
-                  isActivePath(item.path)
-                    ? "bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg"
-                    : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
-                }`}
-              >
-                <ApperIcon name={item.icon} className="h-5 w-5" />
-                <span>{item.name}</span>
-              </Link>
-            ))}
-          </nav>
-
           {/* Mobile menu button */}
 <div className="flex items-center space-x-4">
             {isAuthenticated && user && (
@@ -85,50 +53,15 @@ const Header = () => {
               variant="ghost"
               size="sm"
               className="lg:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setSidebarOpen(true)}
             >
-              <ApperIcon name={mobileMenuOpen ? "X" : "Menu"} className="h-6 w-6" />
+              <ApperIcon name="Menu" className="h-6 w-6" />
             </Button>
           </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-{mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-xl z-40">
-          <div className="px-4 py-4 space-y-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
-                  isActivePath(item.path)
-                    ? "bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg"
-                    : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"
-                }`}
-              >
-                <ApperIcon name={item.icon} className="h-5 w-5" />
-                <span>{item.name}</span>
-              </Link>
-            ))}
-            {isAuthenticated && user && (
-              <div className="border-t border-gray-200 pt-4 mt-4">
-                <div className="px-4 py-2 text-sm text-gray-700">
-                  {user.firstName} {user.lastName}
-                </div>
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 text-gray-600 hover:text-red-600 hover:bg-red-50 w-full text-left"
-                >
-                  <ApperIcon name="LogOut" className="h-5 w-5" />
-                  <span>Logout</span>
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </header>
   );
 };
