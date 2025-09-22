@@ -16,7 +16,7 @@ const [formData, setFormData] = useState({
     dueDate: "",
     priority: "medium",
     category: "general",
-status: "pending",
+status: "planted",
     completed: false
   });
 
@@ -33,7 +33,7 @@ if (task) {
         dueDate: task.dueDate ? task.dueDate.split("T")[0] : "",
         priority: task.priority || "medium",
         category: task.category || "general",
-status: task.status || "pending",
+status: task.status || "planted",
         completed: task.completed || false
       });
     }
@@ -168,9 +168,10 @@ status: task.status || "pending",
           onChange={handleChange}
           required
         >
-          <option value="pending">Pending</option>
-          <option value="in-progress">In Progress</option>
-          <option value="completed">Completed</option>
+          <option value="planted">Planted</option>
+          <option value="growing">Growing</option>
+          <option value="ready">Ready</option>
+          <option value="harvested">Harvested</option>
         </Select>
 
         {task && (

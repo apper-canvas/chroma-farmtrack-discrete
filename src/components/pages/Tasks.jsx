@@ -64,13 +64,13 @@ if (searchTerm) {
     }
 
     // Filter by status
-    if (statusFilter === "completed") {
-      filtered = filtered.filter(task => task.completed);
+if (statusFilter === "completed") {
+      filtered = filtered.filter(task => task.status === "harvested");
     } else if (statusFilter === "pending") {
-      filtered = filtered.filter(task => !task.completed);
+      filtered = filtered.filter(task => ["planted", "growing", "ready"].includes(task.status));
     } else if (statusFilter === "overdue") {
       filtered = filtered.filter(task => 
-        !task.completed && new Date(task.dueDate) < new Date()
+        task.status !== "harvested" && new Date(task.dueDate) < new Date()
       );
     }
 
@@ -231,12 +231,12 @@ return priorityOrder[b.priority] - priorityOrder[a.priority];
             <option value="low">Low Priority</option>
           </Select>
           <Select
-            value={statusFilter}
+value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
             <option value="all">All Tasks</option>
-            <option value="pending">Pending</option>
-            <option value="completed">Completed</option>
+            <option value="pending">Active (Planted/Growing/Ready)</option>
+            <option value="completed">Harvested</option>
             <option value="overdue">Overdue</option>
           </Select>
           <Select
