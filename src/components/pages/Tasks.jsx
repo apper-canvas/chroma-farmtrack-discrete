@@ -50,11 +50,11 @@ const Tasks = () => {
     let filtered = [...tasks];
 
     // Filter by search term
-    if (searchTerm) {
+if (searchTerm) {
       filtered = filtered.filter(task =>
-        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.category?.toLowerCase().includes(searchTerm.toLowerCase())
+        task.title_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.description_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.category_c?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -81,9 +81,9 @@ const Tasks = () => {
           return new Date(a.dueDate) - new Date(b.dueDate);
         case "priority":
           const priorityOrder = { high: 3, medium: 2, low: 1 };
-          return priorityOrder[b.priority] - priorityOrder[a.priority];
+return priorityOrder[b.priority] - priorityOrder[a.priority];
         case "title":
-          return a.title.localeCompare(b.title);
+          return (a.title_c || '').localeCompare(b.title_c || '');
         default:
           return 0;
       }

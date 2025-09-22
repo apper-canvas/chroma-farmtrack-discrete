@@ -111,19 +111,17 @@ description: response.data.description_c || '',
     }
   }
 
-  async create(taskData) {
+async create(taskData) {
     try {
       const client = this.getApperClient();
       
-      // Map UI fields to database fields (only Updateable fields)
       const dbData = {
-        Name: taskData.title || 'New Task',
         title_c: taskData.title || '',
         description_c: taskData.description || '',
         due_date_c: taskData.dueDate || null,
         priority_c: taskData.priority || 'medium',
         category_c: taskData.category || 'general',
-completed_c: taskData.completed || false,
+        completed_c: taskData.completed || false,
         status_c: taskData.status || 'pending',
         crop_id_c: taskData.cropId ? parseInt(taskData.cropId) : null
       };
@@ -131,7 +129,6 @@ completed_c: taskData.completed || false,
       const params = {
         records: [dbData]
       };
-      
       const response = await client.createRecord(this.tableName, params);
       
       if (!response.success) {
@@ -172,19 +169,18 @@ category: newTask.category_c || 'general',
     }
   }
 
-  async update(id, taskData) {
+async update(id, taskData) {
     try {
       const client = this.getApperClient();
       
-      // Map UI fields to database fields (only Updateable fields)
+      // Map UI fields to database fields (only updateable fields)
       const dbData = {
         Id: parseInt(id),
-        Name: taskData.title || 'Updated Task',
         title_c: taskData.title || '',
         description_c: taskData.description || '',
         due_date_c: taskData.dueDate || null,
         priority_c: taskData.priority || 'medium',
-category_c: taskData.category || 'general',
+        category_c: taskData.category || 'general',
         completed_c: taskData.completed || false,
         status_c: taskData.status || 'pending',
         crop_id_c: taskData.cropId ? parseInt(taskData.cropId) : null
@@ -193,7 +189,6 @@ category_c: taskData.category || 'general',
       const params = {
         records: [dbData]
       };
-      
       const response = await client.updateRecord(this.tableName, params);
       
       if (!response.success) {

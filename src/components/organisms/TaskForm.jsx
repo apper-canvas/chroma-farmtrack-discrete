@@ -25,11 +25,11 @@ status: "pending",
 
   useEffect(() => {
     loadCrops();
-    if (task) {
-setFormData({
-        title: task.title || "",
-        description: task.description || "",
-        cropId: task.cropId || "",
+if (task) {
+      setFormData({
+        title: task.title_c || "",
+        description: task.description_c || "",
+        cropId: task.crop_id_c || "",
         dueDate: task.dueDate ? task.dueDate.split("T")[0] : "",
         priority: task.priority || "medium",
         category: task.category || "general",
@@ -116,10 +116,10 @@ status: task.status || "pending",
             placeholder="Select a crop (optional)"
           >
 {crops.map((crop) => (
-              <option key={crop.Id} value={crop.Id}>
-                {crop.name} - {crop.fieldLocation}
-              </option>
-            ))}
+            <option key={crop.Id} value={crop.Id}>
+              {crop.name_c || crop.name} - {crop.field_location_c || crop.fieldLocation}
+            </option>
+          ))}
           </Select>
 
           <Input
