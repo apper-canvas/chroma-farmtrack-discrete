@@ -28,7 +28,7 @@ class CropService {
           {"field": {"Name": "variety_c"}},
           {"field": {"Name": "planting_date_c"}},
           {"field": {"Name": "expected_harvest_c"}},
-          {"field": {"Name": "field_location_c"}},
+{"field": {"Name": "field_location_c"}},
           {"field": {"Name": "quantity_c"}},
           {"field": {"Name": "status_c"}},
           {"field": {"Name": "notes_c"}}
@@ -64,7 +64,7 @@ class CropService {
 
   async getById(id) {
     try {
-      const client = this.getApperClient();
+const client = this.getApperClient();
       const params = {
         fields: [
           {"field": {"Name": "Id"}},
@@ -79,7 +79,6 @@ class CropService {
           {"field": {"Name": "notes_c"}}
         ]
       };
-      
       const response = await client.getRecordById(this.tableName, parseInt(id), params);
       
       if (!response.success) {
